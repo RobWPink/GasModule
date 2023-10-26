@@ -7,15 +7,6 @@ void daughterPrint(unsigned long inter){
   if(!timer[1]){timer[1] = millis();}
   if (!daughterTimer) { daughterTimer = millis(); }
   if (millis() - daughterTimer > inter && daughterTimer) {
-    if(tog[5]){
-      Serial.print(compressorPt);
-      Serial.print(", ");
-      Serial.print(trailer1Pt);
-      Serial.print(", ");
-      Serial.print(trailer2Pt);
-      Serial.print(", ");
-      Serial.println(dispenserPt);
-    }
     daughterTimer = millis();
     bigMatrix[0].writeInt(compressorPt);  // Write local pressure values to 7-seg screen
     smallMatrix[0].squareDisplay(0);
