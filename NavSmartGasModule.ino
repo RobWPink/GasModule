@@ -89,6 +89,7 @@ void loop() {
 
   transceiveRTU();
   daughterPrint(500);
+  printOuts(1000);
 
 
   if(compressorPt >= 1000){
