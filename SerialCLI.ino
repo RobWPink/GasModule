@@ -21,14 +21,19 @@ void SerialCLI(){
       if(argStr.equalsIgnoreCase("reset")){
         resetFunc();  
       }
+      else if(argStr.equalsIgnoreCase("disp")){
+        String argStrVal = argBuf[++n];
+        argVal = argStrVal.toInt();
+        dispensers[argVal+1].print = !dispensers[argVal+1].print;
+      }
       else if(argStr.equalsIgnoreCase("read")){
-        printBits(readWord.word,true);
+        tog[2] = !tog[2];
       }
       else if(argStr.equalsIgnoreCase("send")){
-        printBits(sendWord.word,true);
+        tog[3] = !tog[3];
       }
       else if(argStr.equalsIgnoreCase("psi")){
-        tog[5] = !tog[5];
+        tog[4] = !tog[4];
       }
       else if(argStr.equalsIgnoreCase("d1")){
         sendWord.d1 = !sendWord.d1;
@@ -84,3 +89,43 @@ int parseString(String str, char **p, int size){
   }
   return n;
 }
+
+void printOuts(unsigned long inter){
+  if(!timer[3]){timer[3] = millis();}
+  if(millis() - timer[3] > inter && timer[3]){
+    timer[3] = millis();
+    if(tog[2]){Serial.print("READWORD: "); printBits(readWord.word,true);}
+    if(tog[3]){Serial.print("SENDWORD: "); printBits(sendWord.word,true);}
+    if(tog[4]){
+        Serial.print("PSI: ");
+        Serial.print(compressorPt);
+        Serial.print(", ");
+        Serial.print(trailer1Pt);
+        Serial.print(", ");
+        Serial.print(trailer2Pt);
+        Serial.print(", ");
+        Serial.println(dispenserPt);
+      }
+    for(int i = 0; i < numDisp;i++){
+      if(dispensers[i].print){
+        Serial.print("DISPENSER ");
+        Serial.print(i+1);
+        Serial.print(": ");
+        Serial.print(dispensers[i].currentPsi);
+        Serial.print(",");
+        Serial.print(dispensers[i].targetPsi);
+        Serial.print(",");
+        Serial.print(dispensers[i].initialPsi);
+        Serial.print(",");
+        Serial.print(dispensers[i].finalPsi);
+        Serial.print(",");
+        Serial.print(dispensers[i].fillTime);
+        Serial.print(",");
+        Serial.print(dispensers[i].valve?1:0);
+        Serial.print(",");
+        Serial.print(dispensers[i].outOfOrder?1:0);
+        Serial.print(",");
+        Serial.println(dispensers[i].lsr?1:0);
+      }
+    }
+  }
