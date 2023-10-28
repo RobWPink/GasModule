@@ -26,9 +26,17 @@ void SerialCLI(){
       }
       else if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        argInt = argStrVal.toInt();
-        dispensers[argInt-1].print = !dispensers[argInt-1].print;
-        Serial.println(argInt);
+        argInt = argStrVal.toInt() - 1;
+        String argStrValVal = argBuf[n+2];
+        if(argStrValVal.equalsIgnoreCase("print"){
+          dispensers[argInt].print = !dispensers[argInt].print;
+        }
+        else if(argStrValVal.equalsIgnoreCase("ooo"){
+          dispensers[argInt].outOfOrder = !dispensers[argInt].outOfOrder;
+        }
+        else if(argStrValVal.equalsIgnoreCase("valve"){
+          dispensers[argInt].valve = !dispensers[argInt].valve;
+        }
       }
       else if(argStr.equalsIgnoreCase("read")){
         tog[2] = !tog[2];
@@ -38,6 +46,9 @@ void SerialCLI(){
       }
       else if(argStr.equalsIgnoreCase("psi")){
         tog[4] = !tog[4];
+      }
+      else if(argStr.equalsIgnoreCase("sql")){
+        tog[5] = !tog[5];
       }
       else if(argStr.equalsIgnoreCase("d1")){
         sendWord.d1 = !sendWord.d1;
@@ -110,6 +121,81 @@ void printOuts(unsigned long inter){
         Serial.print(", ");
         Serial.println(dispenserPt);
       }
+    if(tog[5]){
+      Serial.print(readWord.ABUTTON);
+      Serial.print(", ");
+      Serial.print(readWord.RBUTTON);
+      Serial.print(", ");
+      Serial.print(readWord.GBUTTON);
+      Serial.print(", ");
+      Serial.print(readWord.SW1);
+      Serial.print(", ");
+      Serial.print(readWord.LSR_IN);
+      Serial.print(", ");
+      Serial.print(readWord.GSR_IN);
+      Serial.print(", ");
+      Serial.print(readWord.DMD_IN);
+      Serial.print(", ");
+      Serial.print(readWord.ESTOP_IN);
+      Serial.print(", ");
+      Serial.print(sendWord.d1);
+      Serial.print(", ");
+      Serial.print(sendWord.d2);
+      Serial.print(", ");
+      Serial.print(sendWord.c1);
+      Serial.print(", ");
+      Serial.print(sendWord.c2);
+      Serial.print(", ");
+      Serial.print(sendWord.OK);
+      Serial.print(", ");
+      Serial.print(sendWord.GSR);
+      Serial.print(", ");
+      Serial.print(sendWord.LSR);
+      Serial.print(", ");
+      Serial.print(sendWord.DMD_OUT1);
+      Serial.print(", ");
+      Serial.print(sendWord.DMD_OUT2);
+      Serial.print(", ");
+      Serial.print(sendWord.SUP_OUT1);
+      Serial.print(", ");
+      Serial.print(sendWord.SUP_OUT2);
+      Serial.print(", ");
+      Serial.print(sendWord.GLIGHT);
+      Serial.print(", ");
+      Serial.print(sendWord.ALIGHT);
+      Serial.print(", ");
+      Serial.print(sendWord.RLIGHT);
+      Serial.print(", ");
+      Serial.print(compressorPt);
+      Serial.print(", ");
+      Serial.print(trailer1Pt);
+      Serial.print(", ");
+      Serial.print(trailer2Pt);
+      Serial.print(", ");
+      Serial.print(dispenserPt);
+      Serial.print(", ");
+      Serial.print(numDisp);
+      Serial.print(", ");
+      Serial.print(i+1); //dispenser #
+      for(int i = 0; i < numDisp; i++){
+        Serial.print(dispensers[i].currentPsi);
+        Serial.print(",");
+        Serial.print(dispensers[i].targetPsi);
+        Serial.print(",");
+        Serial.print(dispensers[i].initialPsi);
+        Serial.print(",");
+        Serial.print(dispensers[i].finalPsi);
+        Serial.print(",");
+        Serial.print(dispensers[i].fillTime);
+        Serial.print(",");
+        Serial.print(dispensers[i].valve?1:0);
+        Serial.print(",");
+        Serial.print(dispensers[i].outOfOrder?1:0);
+        Serial.print(",");
+        Serial.print(dispensers[i].lsr?1:0);
+        if(i != numDisp + 1){Serial.print(",");}
+      }
+    }
     for(int i = 0; i < numDisp;i++){
       if(dispensers[i].print){
         Serial.print("DISPENSER ");
