@@ -108,7 +108,7 @@ double compressorPt = 0;
 double trailer1Pt = 0;
 double trailer2Pt = 0;
 double dispenserPt = 0;
-
-bool          tog[10] = {false};
+bool manual = false;
+bool tog[10] = {false};
 bool err_timeout = false;
 int rtuCnt = 0;

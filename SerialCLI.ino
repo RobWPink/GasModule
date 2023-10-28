@@ -21,10 +21,12 @@ void SerialCLI(){
       if(argStr.equalsIgnoreCase("reset")){
         resetFunc();  
       }
+      else if(argStr.equalsIgnoreCase("manual")){
+        manual = !manual;
+      }
       else if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        argVal = argStrVal.toInt();
-        dispensers[argVal+1].print = !dispensers[argVal+1].print;
+        dispensers[argStrVal.toInt()+1].print = !dispensers[argStrVal.toInt()+1].print;
       }
       else if(argStr.equalsIgnoreCase("read")){
         tog[2] = !tog[2];
@@ -129,3 +131,4 @@ void printOuts(unsigned long inter){
       }
     }
   }
+}
