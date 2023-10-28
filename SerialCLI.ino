@@ -28,13 +28,13 @@ void SerialCLI(){
         String argStrVal = argBuf[++n];
         argInt = argStrVal.toInt() - 1;
         String argStrValVal = argBuf[n+2];
-        if(argStrValVal.equalsIgnoreCase("print"){
+        if(argStrValVal.equalsIgnoreCase("print")){
           dispensers[argInt].print = !dispensers[argInt].print;
         }
-        else if(argStrValVal.equalsIgnoreCase("ooo"){
+        else if(argStrValVal.equalsIgnoreCase("ooo")){
           dispensers[argInt].outOfOrder = !dispensers[argInt].outOfOrder;
         }
-        else if(argStrValVal.equalsIgnoreCase("valve"){
+        else if(argStrValVal.equalsIgnoreCase("valve")){
           dispensers[argInt].valve = !dispensers[argInt].valve;
         }
       }
@@ -176,8 +176,8 @@ void printOuts(unsigned long inter){
       Serial.print(", ");
       Serial.print(numDisp);
       Serial.print(", ");
-      Serial.print(i+1); //dispenser #
       for(int i = 0; i < numDisp; i++){
+        Serial.print(i+1); //dispenser #
         Serial.print(dispensers[i].currentPsi);
         Serial.print(",");
         Serial.print(dispensers[i].targetPsi);
