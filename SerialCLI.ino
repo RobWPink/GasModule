@@ -12,7 +12,7 @@ void SerialCLI(){
   String str;
   char *argBuf[20] = {0};
   double argVal = 0;
-
+  int argInt = 0;
   while(Serial.available()) { str = Serial.readStringUntil('\n'); }
   if (str.length() > 0) {
     int numArgs = parseString(str, argBuf, (int)sizeof(argBuf)); // arguments are stored in argBuf
@@ -26,7 +26,9 @@ void SerialCLI(){
       }
       else if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        dispensers[argStrVal.toInt()+1].print = !dispensers[argStrVal.toInt()+1].print;
+        argInt = argStrVal.toInt();
+        dispensers[argInt-1].print = !dispensers[argInt-1].print;
+        Serial.println(argInt);
       }
       else if(argStr.equalsIgnoreCase("read")){
         tog[2] = !tog[2];

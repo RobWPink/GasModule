@@ -94,7 +94,7 @@ void loop() {
     //GARY
     //when switch is on and dmd is off, fill filling trailer from compressor turn off c2
     if(compressorPt >= 1000){
-      if(!readWord.DMD_IN && readWord.SW2){
+      if(!readWord.DMD_IN && readWord.SW1){
         sendWord.c1 = true;
         sendWord.c2 = false;
         sendWord.d1 = false;
