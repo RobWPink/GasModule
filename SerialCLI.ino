@@ -195,6 +195,7 @@ void printOuts(unsigned long inter){
         Serial.print(dispensers[i].lsr?1:0);
         if(i != numDisp + 1){Serial.print(",");}
       }
+      Serial.println();
     }
     for(int i = 0; i < numDisp;i++){
       if(dispensers[i].print){
