@@ -53,7 +53,7 @@ for(int i = 0;i < 16;i++){
   }
   sendWord.word = 0;
   readWord.word = 0;
-  matrixSetup("SmartGasModule", "v0.0.1");  //M master
+  matrixSetup("SmartGasModule", "v0.0.3");  //M master
   for(int i = 0; i < numDisp;i++){
     dispensers[i].rtuID = i+1;
   }

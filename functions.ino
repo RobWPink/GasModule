@@ -24,7 +24,8 @@ void daughterPrint(unsigned long inter){
 void transceiveRTU() {
   if(rtuCnt < numDisp){ //send/receive carrier
     mbRTU.clearTransmitBuffer();
-    mbRTU.setTransmitBuffer(0, MOVING_AVG_SIZE);
+    mbRTU.setTransmitBuffer(0, dispensers[rtuCnt].outOfOrderSend);
+    mbRTU.setTransmitBuffer(1, dispensers[rtuCnt].valveSend);
     /*
     mbRTU.setTransmitBuffer(1, STALL_THRESHOLD);
     mbRTU.setTransmitBuffer(2, MIN_ALLOWED_PRESSURE);
@@ -33,7 +34,7 @@ void transceiveRTU() {
     mbRTU.setTransmitBuffer(5, STALL_TIMEOUT);
     */
 
-    uint8_t result = mbRTU.readWriteMultipleRegisters(dispensers[rtuCnt].rtuID,0,8,20,1);
+    uint8_t result = mbRTU.readWriteMultipleRegisters(dispensers[rtuCnt].rtuID,0,8,10,2);
     if (result == mbRTU.ku8MBSuccess) {
       dispensers[rtuCnt].fillTime = mbRTU.getResponseBuffer(0);
       dispensers[rtuCnt].currentPsi = mbRTU.getResponseBuffer(1);

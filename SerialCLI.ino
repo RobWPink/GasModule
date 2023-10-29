@@ -32,10 +32,10 @@ void SerialCLI(){
           dispensers[argInt].print = !dispensers[argInt].print;
         }
         else if(argStrValVal.equalsIgnoreCase("ooo")){
-          dispensers[argInt].outOfOrder = !dispensers[argInt].outOfOrder;
+          dispensers[argInt].outOfOrderSend = !dispensers[argInt].outOfOrderSend;
         }
         else if(argStrValVal.equalsIgnoreCase("valve")){
-          dispensers[argInt].valve = !dispensers[argInt].valve;
+          dispensers[argInt].valveSend = !dispensers[argInt].valveSend;
         }
       }
       else if(argStr.equalsIgnoreCase("read")){

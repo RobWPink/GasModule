@@ -96,12 +96,14 @@ struct DISPENSER{
   double targetPsi;
   int rtuFailCnt;
   bool outOfOrder;
+  bool outOfOrderSend;
   bool valve;
+  bool valveSend;
   bool lsr;
   bool print;
 };
 
-DISPENSER dispensers[numDisp] = {0,0,0,0,0,0,0,false,false,false,false};
+DISPENSER dispensers[numDisp] = {0,0,0,0,0,0,0,false,false,false,false,false,false};
 
 unsigned long timer[13] = {0};
 double compressorPt = 0;
