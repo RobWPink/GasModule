@@ -22,9 +22,11 @@ void SerialCLI(){
       if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
         String argStrValVal = argBuf[++n];
+        Serial.println(argStrVal);
+        Serial.println(argStrVal.toInt());
         argInt = argStrVal.toInt();
         Serial.println(argInt);
-        --argInt;
+
         if(0 < argInt <= numDisp){
           if(argStrValVal.equalsIgnoreCase("print")){
             dispensers[argInt].print = !dispensers[argInt].print;
