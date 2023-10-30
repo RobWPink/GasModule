@@ -25,11 +25,6 @@ void SerialCLI(){
         //dispensers[(int)argVal-1].print = !dispensers[(int)argVal-1].print;
         //Serial.println(argVal);
       }
-      Serial.print(n);
-      Serial.print(" ");
-      Serial.print(argBuf[n]);
-      Serial.print(" ");
-      Serial.println(argStr);
       /*
       String argStr = argBuf[n];
       Serial.println(argStr);
