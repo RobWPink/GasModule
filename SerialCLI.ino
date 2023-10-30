@@ -20,6 +20,7 @@ void SerialCLI(){
       String argStr = argBuf[n];
       if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
+        Serial.println(argStrVal);
         selected = argStrVal.toInt();
         Serial.println(selected);
       }
