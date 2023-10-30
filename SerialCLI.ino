@@ -8,6 +8,7 @@ void printBits(uint16_t myWord,bool nl){
   }
   if(nl){Serial.println();}
 }
+
 void SerialCLI(){
   String str;
   char *argBuf[20] = {0};
@@ -18,23 +19,12 @@ void SerialCLI(){
     int numArgs = parseString(str, argBuf, (int)sizeof(argBuf)); // arguments are stored in argBuf
     for(int n = 0; n < numArgs; n++){
       String argStr = argBuf[n];
-      if(argStr.equalsIgnoreCase("reset")){
-        resetFunc();  
-      }
-      else if(argStr.equalsIgnoreCase("manual")){
-        manual = !manual;
-      }
-      else if(argStr.equalsIgnoreCase("disp")){
-        Serial.println(argBuf[n]);
-        Serial.println(argBuf[++n]);
-        Serial.println(argBuf[++n]);
+      if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        argInt = argStrVal.toDouble() - 1;
-        Serial.println(argStrVal);
         String argStrValVal = argBuf[++n];
-        Serial.println(argStrValVal);
+        argInt = argStrVal.toInt();
+        Serial.println(argInt);
         if(argStrValVal.equalsIgnoreCase("print")){
-          
           dispensers[argInt].print = !dispensers[argInt].print;
         }
         else if(argStrValVal.equalsIgnoreCase("ooo")){
@@ -44,7 +34,12 @@ void SerialCLI(){
           dispensers[argInt].valveSend = !dispensers[argInt].valveSend;
         }
       }
-
+      else if(argStr.equalsIgnoreCase("reset")){
+        resetFunc();  
+      }
+      else if(argStr.equalsIgnoreCase("manual")){
+        manual = !manual;
+      }
       else if(argStr.equalsIgnoreCase("read")){
         tog[2] = !tog[2];
       }
