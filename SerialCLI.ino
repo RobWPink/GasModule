@@ -23,15 +23,21 @@ void SerialCLI(){
         String argStrVal = argBuf[++n];
         String argStrValVal = argBuf[++n];
         argInt = argStrVal.toInt();
-        Serial.println(argInt);
-        if(argStrValVal.equalsIgnoreCase("print")){
-          dispensers[argInt].print = !dispensers[argInt].print;
+        if(0 < argInt < numDisp){
+          if(argStrValVal.equalsIgnoreCase("print")){
+            dispensers[argInt].print = !dispensers[argInt].print;
+          }
+          else if(argStrValVal.equalsIgnoreCase("ooo")){
+            dispensers[argInt].outOfOrderSend = !dispensers[argInt].outOfOrderSend;
+          }
+          else if(argStrValVal.equalsIgnoreCase("valve")){
+            dispensers[argInt].valveSend = !dispensers[argInt].valveSend;
+          }
         }
-        else if(argStrValVal.equalsIgnoreCase("ooo")){
-          dispensers[argInt].outOfOrderSend = !dispensers[argInt].outOfOrderSend;
-        }
-        else if(argStrValVal.equalsIgnoreCase("valve")){
-          dispensers[argInt].valveSend = !dispensers[argInt].valveSend;
+        else{
+          Serial.print("Invalid dispenser ID! Valid ID's include 1..");
+          Serial.println(numDisp);
+          break;
         }
       }
       else if(argStr.equalsIgnoreCase("reset")){
