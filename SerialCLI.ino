@@ -25,6 +25,9 @@ void SerialCLI(){
         manual = !manual;
       }
       else if(argStr.equalsIgnoreCase("disp")){
+        Serial.println(argBuf[n]);
+        Serial.println(argBuf[++n]);
+        Serial.println(argBuf[++n]);
         String argStrVal = argBuf[++n];
         argInt = argStrVal.toDouble() - 1;
         Serial.println(argStrVal);
