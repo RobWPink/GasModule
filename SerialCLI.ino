@@ -22,8 +22,8 @@ void SerialCLI(){
       if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
         argVal = argStrVal.toDouble();
-        dispensers[(int)argVal-1].print = !dispensers[(int)argVal-1].print;
-        Serial.println(argVal);
+        //dispensers[(int)argVal-1].print = !dispensers[(int)argVal-1].print;
+        //Serial.println(argVal);
       }
       Serial.print(n);
       Serial.print(" ");
@@ -57,7 +57,7 @@ void SerialCLI(){
       else if(argStr.equalsIgnoreCase("disp4ooo")){
         dispensers[3].outOfOrderSend = !dispensers[3].outOfOrderSend;
       }
-      
+      */
       else if(argStr.equalsIgnoreCase("reset")){
         resetFunc();  
       }
@@ -115,7 +115,7 @@ void SerialCLI(){
 
       else{
         Serial.println("Invalid entry");
-      }*/
+      }
     }
   }
 }
