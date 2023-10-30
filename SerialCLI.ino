@@ -21,8 +21,8 @@ void SerialCLI(){
       String argStr = argBuf[n];
       if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        argVal = argStrVal.toInt();
-        dispensers[argVal-1].print = !dispensers[argVal-1].print;
+        argVal = argStrVal.toDouble();
+        dispensers[(int)argVal-1].print = !dispensers[(int)argVal-1].print;
         Serial.println(argVal);
       }
       Serial.print(n);
