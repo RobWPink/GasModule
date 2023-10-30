@@ -23,7 +23,7 @@ void SerialCLI(){
         String argStrVal = argBuf[++n];
         String argStrValVal = argBuf[++n];
         argInt = argStrVal.toInt();
-        if(0 < argInt < numDisp){
+        if(0 < argInt <= numDisp){
           if(argStrValVal.equalsIgnoreCase("print")){
             dispensers[argInt].print = !dispensers[argInt].print;
           }
@@ -33,6 +33,7 @@ void SerialCLI(){
           else if(argStrValVal.equalsIgnoreCase("valve")){
             dispensers[argInt].valveSend = !dispensers[argInt].valveSend;
           }
+          else{Serial.println("Invalid Dispenser command!");}
         }
         else{
           Serial.print("Invalid dispenser ID! Valid ID's include 1..");

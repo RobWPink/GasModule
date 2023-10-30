@@ -9,7 +9,6 @@
 #include <ADS7828.h>
 #include "I2C_API.h"
 
-int argSet = 0;
 #define ESTOP_BREAK 40
 #define LED_PWR 22
 #define TRACO_24VDC 23
