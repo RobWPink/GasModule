@@ -18,33 +18,31 @@ void SerialCLI(){
     int numArgs = parseString(str, argBuf, (int)sizeof(argBuf)); // arguments are stored in argBuf
     for(int n = 0; n < numArgs; n++){
       String argStr = argBuf[n];
-      if(argStr.equalsIgnoreCase("disp")){
-        String argStrVal = argBuf[++n];
-        Serial.println(argStrVal);
-        selected = argStrVal.toInt();
-        Serial.println(selected);
+      if(argStr.equalsIgnoreCase("disp1print")){
+        dispensers[0].print = !dispensers[0].print;
       }
-      else if(argStr.equalsIgnoreCase("print")){
-        if(0 < selected <= numDisp){
-          dispensers[selected].print = !dispensers[selected].print;
-          selected = 0;
-        }
-        else{Serial.println("Please select a dispenser first with the `disp <#>` command.");}
+      else if(argStr.equalsIgnoreCase("disp1ooo")){
+        dispensers[0].outOfOrderSend = !dispensers[0].outOfOrderSend;
       }
-      else if(argStr.equalsIgnoreCase("ooo")){
-        if(0 < selected <= numDisp){
-          dispensers[selected].outOfOrderSend = !dispensers[selected].outOfOrderSend;
-          selected = 0;
-        }
-        else{Serial.println("Please select a dispenser first with the `disp <#>` command.");}
+      else if(argStr.equalsIgnoreCase("disp2print")){
+        dispensers[1].print = !dispensers[1].print;
       }
-      else if(argStr.equalsIgnoreCase("valve")){
-         if(0 < selected <= numDisp){
-          dispensers[selected].valveSend = !dispensers[selected].valveSend;
-          selected = 0;
-        }
-        else{Serial.println("Please select a dispenser first with the `disp <#>` command.");}
+      else if(argStr.equalsIgnoreCase("disp2ooo")){
+        dispensers[1].outOfOrderSend = !dispensers[1].outOfOrderSend;
       }
+      else if(argStr.equalsIgnoreCase("disp3print")){
+        dispensers[2].print = !dispensers[2].print;
+      }
+      else if(argStr.equalsIgnoreCase("disp3ooo")){
+        dispensers[2].outOfOrderSend = !dispensers[2].outOfOrderSend;
+      }
+      else if(argStr.equalsIgnoreCase("disp4print")){
+        dispensers[3].print = !dispensers[3].print;
+      }
+      else if(argStr.equalsIgnoreCase("disp4ooo")){
+        dispensers[3].outOfOrderSend = !dispensers[3].outOfOrderSend;
+      }
+      
       else if(argStr.equalsIgnoreCase("reset")){
         resetFunc();  
       }
