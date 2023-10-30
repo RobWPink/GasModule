@@ -14,7 +14,7 @@
 #define TRACO_24VDC 23
 
 #define CS 4     //SD CS pin
-
+int selected = 0;
 union mcp2word{
   uint16_t word;
   struct{

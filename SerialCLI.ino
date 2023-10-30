@@ -21,29 +21,28 @@ void SerialCLI(){
       String argStr = argBuf[n];
       if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        String argStrValVal = argBuf[++n];
-        Serial.println(argStrVal);
-        Serial.println(argStrVal.toInt());
-        argInt = argStrVal.toInt();
-        Serial.println(argInt);
-
-        if(0 < argInt <= numDisp){
-          if(argStrValVal.equalsIgnoreCase("print")){
-            dispensers[argInt].print = !dispensers[argInt].print;
-          }
-          else if(argStrValVal.equalsIgnoreCase("ooo")){
-            dispensers[argInt].outOfOrderSend = !dispensers[argInt].outOfOrderSend;
-          }
-          else if(argStrValVal.equalsIgnoreCase("valve")){
-            dispensers[argInt].valveSend = !dispensers[argInt].valveSend;
-          }
-          else{Serial.println("Invalid Dispenser command!");}
+        selected = argStrVal.toInt();
+      }
+      else if(argStr.equalsIgnoreCase("print")){
+        if(0 < selected <= numDisp){
+          dispensers[selected].print = !dispensers[selected].print;
+          selected = 0;
         }
-        else{
-          Serial.print("Invalid dispenser ID! Valid ID's include 1..");
-          Serial.println(numDisp);
-          //break;
+        else{Serial.println("Please select a dispenser first with the `disp <#>` command.");}
+      }
+      else if(argStr.equalsIgnoreCase("ooo")){
+        if(0 < selected <= numDisp){
+          dispensers[selected].outOfOrderSend = !dispensers[selected].outOfOrderSend;
+          selected = 0;
         }
+        else{Serial.println("Please select a dispenser first with the `disp <#>` command.");}
+      }
+      else if(argStr.equalsIgnoreCase("valve")){
+         if(0 < selected <= numDisp){
+          dispensers[selected].valveSend = !dispensers[selected].valveSend;
+          selected = 0;
+        }
+        else{Serial.println("Please select a dispenser first with the `disp <#>` command.");}
       }
       else if(argStr.equalsIgnoreCase("reset")){
         resetFunc();  
