@@ -27,7 +27,8 @@ void SerialCLI(){
       else if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
         argInt = argStrVal.toInt() - 1;
-        String argStrValVal = argBuf[n+2];
+        String argStrValVal = argBuf[++n];
+        
         if(argStrValVal.equalsIgnoreCase("print")){
           dispensers[argInt].print = !dispensers[argInt].print;
         }
@@ -38,6 +39,7 @@ void SerialCLI(){
           dispensers[argInt].valveSend = !dispensers[argInt].valveSend;
         }
       }
+
       else if(argStr.equalsIgnoreCase("read")){
         tog[2] = !tog[2];
       }
