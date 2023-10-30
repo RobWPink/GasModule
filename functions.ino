@@ -47,7 +47,7 @@ void transceiveRTU() {
       
       mbRTU.clearResponseBuffer();
       dispensers[rtuCnt].rtuFailCnt = 0;
-
+      /*
       String key = "D" + rtuCnt;
       String key_ = key + "TME";
       telWriteValue(TEL_ADDR, key_.c_str(),dispensers[rtuCnt].fillTime);
@@ -65,6 +65,7 @@ void transceiveRTU() {
       telWriteValue(TEL_ADDR, key_.c_str(),dispensers[rtuCnt].outOfOrder);
       key_ = key + "LSR";
       telWriteValue(TEL_ADDR, key_.c_str(),dispensers[rtuCnt].lsr);
+      */
     }
     else{dispensers[rtuCnt].rtuFailCnt++;}
     if (dispensers[rtuCnt].rtuFailCnt > 10) {
@@ -78,11 +79,6 @@ void transceiveRTU() {
   }
   else{rtuCnt = 0;}
 
-  telWriteValue(TEL_ADDR, GSRER,readWord.GSR_IN);
-  telWriteValue(TEL_ADDR, PTCMP,compressorPt);
-  telWriteValue(TEL_ADDR, PTTRA,trailer1Pt);
-  telWriteValue(TEL_ADDR, PTTRB,trailer2Pt);
-  telWriteValue(TEL_ADDR, PTDSP,dispenserPt);
 }
 
 void matrixSetup(String s1, String s2) {
