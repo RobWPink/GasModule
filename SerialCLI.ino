@@ -13,11 +13,17 @@ void SerialCLI(){
   String str;
   char *argBuf[20] = {0};
   double argVal = 0;
+
   while(Serial.available()) { str = Serial.readStringUntil('\n'); }
   if (str.length() > 0) {
     int numArgs = parseString(str, argBuf, (int)sizeof(argBuf)); // arguments are stored in argBuf
     for(int n = 0; n < numArgs; n++){
       String argStr = argBuf[n];
+      if(argStr.equalsIgnoreCase("bl508")){
+        String argStrVal = argBuf[++n];
+        argVal = argStrVal.toDouble();
+        Serial.println(argVal);
+      }
       Serial.print(n);
       Serial.print(" ");
       Serial.print(argBuf[n]);
