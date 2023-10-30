@@ -16,7 +16,7 @@ void SerialCLI(){
   while(Serial.available()) { str = Serial.readStringUntil('\n'); }
   if (str.length() > 0) {
     int numArgs = parseString(str, argBuf, (int)sizeof(argBuf)); // arguments are stored in argBuf
-    for(int n = 2; n < numArgs; n++){
+    for(int n = 3; n < numArgs; n++){
       String argStr = argBuf[n];
       Serial.println(argStr);
       if(argStr.equalsIgnoreCase("disp1print")){
