@@ -38,7 +38,7 @@ void SerialCLI(){
         else{
           Serial.print("Invalid dispenser ID! Valid ID's include 1..");
           Serial.println(numDisp);
-          break;
+          //break;
         }
       }
       else if(argStr.equalsIgnoreCase("reset")){
