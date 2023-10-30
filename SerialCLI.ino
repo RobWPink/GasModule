@@ -19,9 +19,10 @@ void SerialCLI(){
     int numArgs = parseString(str, argBuf, (int)sizeof(argBuf)); // arguments are stored in argBuf
     for(int n = 0; n < numArgs; n++){
       String argStr = argBuf[n];
-      if(argStr.equalsIgnoreCase("bl508")){
+      if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        argVal = argStrVal.toDouble();
+        argVal = argStrVal.toInt();
+        dispensers[argVal-1].print = !dispensers[argVal-1].print;
         Serial.println(argVal);
       }
       Serial.print(n);
