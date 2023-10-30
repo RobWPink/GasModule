@@ -23,6 +23,7 @@ void SerialCLI(){
         String argStrVal = argBuf[++n];
         String argStrValVal = argBuf[++n];
         argInt = argStrVal.toInt();
+        Serial.println(argInt);
         --argInt;
         if(0 < argInt <= numDisp){
           if(argStrValVal.equalsIgnoreCase("print")){
