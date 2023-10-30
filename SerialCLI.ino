@@ -26,11 +26,12 @@ void SerialCLI(){
       }
       else if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        argInt = argStrVal.toInt() - 1;
+        argInt = argStrVal.toDouble() - 1;
+        Serial.println(argInt);
         String argStrValVal = argBuf[++n];
         Serial.println(argStrValVal);
         if(argStrValVal.equalsIgnoreCase("print")){
-          Serial.println(argInt);
+          
           dispensers[argInt].print = !dispensers[argInt].print;
         }
         else if(argStrValVal.equalsIgnoreCase("ooo")){
