@@ -80,7 +80,7 @@ Adafruit_MCP23X17 mcp1;
 Adafruit_MCP23X17 mcp2;
 
 volatile int  MOVING_AVG_SIZE      = 20;     // Number of data points to average together to smooth pressure readings
-const int numDisp = 1;//6;
+const int numDisp = 3;//6;
 
 unsigned long flashTimer1 = 0;
 unsigned long flashTimer2 = 0;
