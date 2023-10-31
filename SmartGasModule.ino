@@ -88,31 +88,22 @@ void loop() {
   printOuts(1000);
 
   if(!manual){
-    sendWord.d2 = readWord.DMD_IN;
-    sendWord.ALIGHT = readWord.DMD_IN;
-    sendWord.GLIGHT = !readWord.DMD_IN;
-
-    if(compressorPt >= 1000){
-      if(!readWord.DMD_IN && readWord.SW1){
-        sendWord.c1 = true;
-        sendWord.c2 = false;
-        sendWord.d1 = false;
-        sendWord.d2 = false;
-      }
-      else{
-        sendWord.c1 = false;
-        sendWord.c2 = true;
-        sendWord.d1 = false;
-      }
+    if(compressorPt >= 100){
+      sendWord.c2 = (!readWord.SW1 || readWord.DMD_IN)?true:false;
+      sendWord.c1 = (!readWord.DMD_IN && readWord.SW1)?true:false;
       timer[0] = 0;
     }
-
-    if((sendWord.c1 || sendWord.c2) && compressorPt < 1000){//read xv406
+    else{
       if(!timer[0]){timer[0] = millis();}
       if(millis() - timer[0] > 60000*10 && timer[0]){
         sendWord.c2 = false;
+        sendWord.c1 = false;
         timer[0] = 0;
       }
     }
+    sendWord.d2 = readWord.DMD_IN;
+    sendWord.d1 = false;
+    sendWord.ALIGHT = readWord.DMD_IN;
+    sendWord.GLIGHT = !readWord.DMD_IN;
   }
 }

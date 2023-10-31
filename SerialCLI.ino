@@ -1,4 +1,5 @@
 #define SPTR_SIZE   20
+
 void printBits(uint16_t myWord,bool nl){
   for(uint16_t mask = 0x8000; mask; mask >>= 1){
     if(mask & myWord)
@@ -17,24 +18,68 @@ void SerialCLI(){
   while(Serial.available()) { str = Serial.readStringUntil('\n'); }
   if (str.length() > 0) {
     int numArgs = parseString(str, argBuf, (int)sizeof(argBuf)); // arguments are stored in argBuf
-    Serial.println(argBuf[0]);
-    Serial.println(argBuf[1]);
-    Serial.println(argBuf[2]);
-    /*
     for(int n = 0; n < numArgs; n++){
       String argStr = argBuf[n];
       if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
         argVal = argStrVal.toDouble();
-      }
 
-      else{
-        Serial.println("Invalid entry");
       }
-    }*/
+      else if(argStr.equalsIgnoreCase("read")){
+        tog[2] = !tog[2];
+      }
+      else if(argStr.equalsIgnoreCase("send")){
+        tog[3] = !tog[3];
+      }
+      else if(argStr.equalsIgnoreCase("psi")){
+        tog[4] = !tog[4];
+      }
+      else if(argStr.equalsIgnoreCase("sql")){
+        tog[5] = !tog[5];
+      }
+      else if(argStr.equalsIgnoreCase("d1")){
+        sendWord.d1 = !sendWord.d1;
+      }
+      else if(argStr.equalsIgnoreCase("c1")){
+        sendWord.c1 = !sendWord.c1;
+      }
+      else if(argStr.equalsIgnoreCase("d2")){
+        sendWord.d2 = !sendWord.d2;
+      }
+      else if(argStr.equalsIgnoreCase("c2")){
+        sendWord.c2 = !sendWord.c2;
+      }
+      else if(argStr.equalsIgnoreCase("ok")){
+        sendWord.OK = !sendWord.OK;
+      }
+      else if(argStr.equalsIgnoreCase("dmd1")){
+        sendWord.DMD_OUT1 = !sendWord.DMD_OUT1;
+      }
+      else if(argStr.equalsIgnoreCase("dmd2")){
+        sendWord.DMD_OUT2 = !sendWord.DMD_OUT2;
+      }
+      else if(argStr.equalsIgnoreCase("sup1")){
+        sendWord.SUP_OUT1 = !sendWord.SUP_OUT1;
+      }
+      else if(argStr.equalsIgnoreCase("sup2")){
+        sendWord.SUP_OUT2 = !sendWord.SUP_OUT2;
+      }
+      else if(argStr.equalsIgnoreCase("green")){
+        sendWord.GLIGHT = !sendWord.GLIGHT;
+      }
+      else if(argStr.equalsIgnoreCase("amber")){
+        sendWord.ALIGHT = !sendWord.ALIGHT;
+      }
+      else if(argStr.equalsIgnoreCase("red")){
+        sendWord.RLIGHT = !sendWord.RLIGHT;
+      }
+      else if(argStr.equalsIgnoreCase("manual")){
+        manual = !manual;
+      }
+      else{Serial.println("Invalid Input.");}
+    }
   }
 }
-
 int parseString(String str, char **p, int size){
   char s[100] = {0};
   int n = 0;
