@@ -17,101 +17,21 @@ void SerialCLI(){
   while(Serial.available()) { str = Serial.readStringUntil('\n'); }
   if (str.length() > 0) {
     int numArgs = parseString(str, argBuf, (int)sizeof(argBuf)); // arguments are stored in argBuf
+    Serial.println(argBuf[0]);
+    Serial.println(argBuf[1]);
+    Serial.println(argBuf[2]);
+    /*
     for(int n = 0; n < numArgs; n++){
       String argStr = argBuf[n];
       if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
         argVal = argStrVal.toDouble();
-        //dispensers[(int)argVal-1].print = !dispensers[(int)argVal-1].print;
-        //Serial.println(argVal);
-      }
-      /*
-      String argStr = argBuf[n];
-      Serial.println(argStr);
-      if(argStr.equalsIgnoreCase("disp1print")){
-        dispensers[0].print = !dispensers[0].print;
-      }
-      else if(argStr.equalsIgnoreCase("disp1ooo")){
-        dispensers[0].outOfOrderSend = !dispensers[0].outOfOrderSend;
-      }
-      else if(argStr.equalsIgnoreCase("disp2print")){
-        dispensers[1].print = !dispensers[1].print;
-      }
-      else if(argStr.equalsIgnoreCase("disp2ooo")){
-        dispensers[1].outOfOrderSend = !dispensers[1].outOfOrderSend;
-      }
-      else if(argStr.equalsIgnoreCase("disp3print")){
-        dispensers[2].print = !dispensers[2].print;
-      }
-      else if(argStr.equalsIgnoreCase("disp3ooo")){
-        dispensers[2].outOfOrderSend = !dispensers[2].outOfOrderSend;
-      }
-      else if(argStr.equalsIgnoreCase("disp4print")){
-        dispensers[3].print = !dispensers[3].print;
-      }
-      else if(argStr.equalsIgnoreCase("disp4ooo")){
-        dispensers[3].outOfOrderSend = !dispensers[3].outOfOrderSend;
-      }
-      */
-      else if(argStr.equalsIgnoreCase("reset")){
-        resetFunc();  
-      }
-      else if(argStr.equalsIgnoreCase("manual")){
-        manual = !manual;
-      }
-      else if(argStr.equalsIgnoreCase("read")){
-        tog[2] = !tog[2];
-      }
-      else if(argStr.equalsIgnoreCase("send")){
-        tog[3] = !tog[3];
-      }
-      else if(argStr.equalsIgnoreCase("psi")){
-        tog[4] = !tog[4];
-      }
-      else if(argStr.equalsIgnoreCase("sql")){
-        tog[5] = !tog[5];
-      }
-      else if(argStr.equalsIgnoreCase("d1")){
-        sendWord.d1 = !sendWord.d1;
-      }
-      else if(argStr.equalsIgnoreCase("c1")){
-        sendWord.c1 = !sendWord.c1;
-      }
-      else if(argStr.equalsIgnoreCase("d2")){
-        sendWord.d2 = !sendWord.d2;
-      }
-      else if(argStr.equalsIgnoreCase("c2")){
-        sendWord.c2 = !sendWord.c2;
-      }
-      else if(argStr.equalsIgnoreCase("ok")){
-        sendWord.OK = !sendWord.OK;
-      }
-      else if(argStr.equalsIgnoreCase("dmd1")){
-        sendWord.DMD_OUT1 = !sendWord.DMD_OUT1;
-      }
-      else if(argStr.equalsIgnoreCase("dmd2")){
-        sendWord.DMD_OUT2 = !sendWord.DMD_OUT2;
-      }
-      else if(argStr.equalsIgnoreCase("sup1")){
-        sendWord.SUP_OUT1 = !sendWord.SUP_OUT1;
-      }
-      else if(argStr.equalsIgnoreCase("sup2")){
-        sendWord.SUP_OUT2 = !sendWord.SUP_OUT2;
-      }
-      else if(argStr.equalsIgnoreCase("green")){
-        sendWord.GLIGHT = !sendWord.GLIGHT;
-      }
-      else if(argStr.equalsIgnoreCase("amber")){
-        sendWord.ALIGHT = !sendWord.ALIGHT;
-      }
-      else if(argStr.equalsIgnoreCase("red")){
-        sendWord.RLIGHT = !sendWord.RLIGHT;
       }
 
       else{
         Serial.println("Invalid entry");
       }
-    }
+    }*/
   }
 }
 

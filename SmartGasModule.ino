@@ -53,7 +53,7 @@ for(int i = 0;i < 16;i++){
   }
   sendWord.word = 0;
   readWord.word = 0;
-  matrixSetup("SmartGasModule", "v0.0.4");  //M master
+  matrixSetup("SmartGasModule", "v0.0.5");  //M master
   for(int i = 0; i < numDisp;i++){
     dispensers[i].rtuID = i+1;
   }
@@ -92,8 +92,6 @@ void loop() {
     sendWord.ALIGHT = readWord.DMD_IN;
     sendWord.GLIGHT = !readWord.DMD_IN;
 
-    //GARY
-    //when switch is on and dmd is off, fill filling trailer from compressor turn off c2
     if(compressorPt >= 1000){
       if(!readWord.DMD_IN && readWord.SW1){
         sendWord.c1 = true;

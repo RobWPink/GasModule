@@ -12,7 +12,7 @@
 #define ESTOP_BREAK 40
 #define LED_PWR 22
 #define TRACO_24VDC 23
-
+const int numDisp = 1;//6;
 #define CS 4     //SD CS pin
 int selected = 0;
 union mcp2word{
@@ -80,7 +80,6 @@ Adafruit_MCP23X17 mcp1;
 Adafruit_MCP23X17 mcp2;
 
 volatile int  MOVING_AVG_SIZE      = 20;     // Number of data points to average together to smooth pressure readings
-const int numDisp = 3;//6;
 
 unsigned long flashTimer1 = 0;
 unsigned long flashTimer2 = 0;
