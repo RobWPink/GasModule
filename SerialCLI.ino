@@ -186,8 +186,6 @@ void printOuts(unsigned long inter){
       Serial.print(numDisp);
       Serial.print(", ");
       for(int i = 0; i < numDisp; i++){
-        Serial.print(i+1); //dispenser #
-        Serial.print(",");
         Serial.print(dispensers[i].currentPsi);
         Serial.print(",");
         Serial.print(dispensers[i].targetPsi);
