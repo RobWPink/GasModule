@@ -58,7 +58,7 @@ for(int i = 0;i < 16;i++){
     dispensers[i].rtuID = i+1;
   }
   Serial.println("OK");
-  //tog[5] = true;
+  tog[5] = true;
   delay(100);
 }
 
