@@ -22,9 +22,32 @@ void SerialCLI(){
       String argStr = argBuf[n];
       if(argStr.equalsIgnoreCase("disp")){
         String argStrVal = argBuf[++n];
-        argVal = argStrVal.toDouble();
-
+        argVal = argStrVal.toInt();
+        if(0 <= argVal <= numDisp){
+          if(argVal != selected){
+            selected = argVal;
+          }
+          else{selected = 0;}
+        }
+        else{Serial.println("Invalid Dispenser Number!");}
       }
+
+      else if(argStr.equalsIgnoreCase("outoforder")){
+        if(selected > numDisp){Serial.println("Invalid Dispenser Number!");}
+        else if(selected > 0){
+          dispensers[selected].outOfOrderSend = !dispensers[selected].outOfOrderSend;
+        }
+        else{Serial.println("Please select a dispenser first.");}
+      }
+
+      else if(argStr.equalsIgnoreCase("valve")){
+        if(selected > numDisp){Serial.println("Invalid Dispenser Number!");}
+        else if(selected > 0){
+          dispensers[selected].valveSend = !dispensers[selected].valveSend;
+        }
+        else{Serial.println("Please select a dispenser first.");}
+      }
+
       else if(argStr.equalsIgnoreCase("read")){
         tog[2] = !tog[2];
       }

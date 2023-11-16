@@ -12,7 +12,7 @@
 #define ESTOP_BREAK 40
 #define LED_PWR 22
 #define TRACO_24VDC 23
-const int numDisp = 1;//6;
+const int numDisp = 4;//6;
 #define CS 4     //SD CS pin
 int selected = 0;
 union mcp2word{
