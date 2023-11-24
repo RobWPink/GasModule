@@ -1,5 +1,5 @@
 #include "gasModule.h"
-
+//NAVISTAR
 RunningAverage compressor(MOVING_AVG_SIZE); //pt403
 RunningAverage trailer1(MOVING_AVG_SIZE); //pt401
 RunningAverage trailer2(MOVING_AVG_SIZE); //pt414
